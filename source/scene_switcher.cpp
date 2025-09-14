@@ -166,7 +166,7 @@ void Menu_init(void) {
 
 void Menu_exit(void) {
 	logger.info(DEF_MENU_EXIT_STR, "Exiting...");
-	u64 time_out = 10000000000;
+	u64 time_out = U64_MAX;
 	Result_with_string result;
 
 	menu_thread_run = false;
@@ -191,10 +191,10 @@ void Menu_exit(void) {
 
 	remove_apt_callback();
 
-	logger.info(DEF_MENU_EXIT_STR, "threadJoin()...", threadJoin(menu_worker_thread, time_out));
-	logger.info(DEF_MENU_EXIT_STR, "threadJoin()...", threadJoin(thumbnail_downloader_thread, time_out));
-	logger.info(DEF_MENU_EXIT_STR, "threadJoin()...", threadJoin(async_task_thread, time_out));
-	logger.info(DEF_MENU_EXIT_STR, "threadJoin()...", threadJoin(misc_tasks_thread, time_out));
+	logger.info(DEF_MENU_EXIT_STR, "threadJoin()...", threadJoin(menu_worker_thread, U64_MAX));
+	logger.info(DEF_MENU_EXIT_STR, "threadJoin()...", threadJoin(thumbnail_downloader_thread, U64_MAX));
+	logger.info(DEF_MENU_EXIT_STR, "threadJoin()...", threadJoin(async_task_thread, U64_MAX));
+	logger.info(DEF_MENU_EXIT_STR, "threadJoin()...", threadJoin(misc_tasks_thread, U64_MAX));
 	threadFree(menu_worker_thread);
 	threadFree(thumbnail_downloader_thread);
 	threadFree(async_task_thread);
