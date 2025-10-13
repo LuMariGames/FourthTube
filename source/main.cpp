@@ -11,5 +11,5 @@ int main() {
 	}
 
 	Menu_exit();
-	return 0;
+	exit(0);
 }
